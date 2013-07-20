@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Spotify CSS files -->
+        <link rel="stylesheet" type="text/css" href="sp://resources/css/eve.css">
+        <link rel="stylesheet" type="text/css" href="sp://resources/css/api.css">
+        <link rel="stylesheet" type="text/css" href="sp://resources/css/player.css">
+        <link rel="stylesheet" type="text/css" href="sp://resources/css/list.css">
+
+        <!-- Project CSS files -->
+        <link rel="stylesheet" type="text/css" href="css/venueradio.css">
+
+        <!-- Playlist Templates -->
+        <script id="ich_venue_list" type="text/html">
+            <ul class="venue-list">
+            </ul>
+        </script>
+
+        <script id="ich_venue_list_item" type="text/html">
+                <li data-slug="{{ venue_slug }}">{{ venue_name }}</li>
+        </script>
+        
+    </head>
+    <body>
+        <div id="container">
+            HelloWorld!
+
+        </div> <!-- end #container -->
+
+        <script src="/js/lib/jquery.js"></script>
+        <script src="/js/lib/ICanHaz.min.js"></script>
+        <script src="/js/lib/underscore-min.js"></script>
+
+        <script src="/js/VenueRadioApp.js"></script>
+    </body>
+</html>

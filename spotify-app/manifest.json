@@ -1,0 +1,30 @@
+{
+	"AppDescription": {
+		"en": "Concert Venue Radio"
+	},
+	"AppIcon": {
+		"36x18": "icon.png"
+	},
+	"AppName": {
+		"en": "VenueRadio"
+	},
+	"BundleIdentifier": "venueradio",
+	"BundleType": "Application",
+	"BundleVersion": "0.1",
+	"Dependencies": {
+	  "api": "0.2.3",
+	  "util": "0.1.0",
+	  "resources": "0.2.2"
+	},
+	"RequiredInterface": 1,
+	"AcceptedLinkTypes": [
+		"track"
+	],
+	"RequiredPermissions": [
+		"http://localhost:5000/"
+	],
+	"SupportedLanguages": [
+		"en"
+	],
+	"VendorIdentifier": "com.abelnation"
+}
