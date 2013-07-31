@@ -10,21 +10,40 @@
         <!-- Project CSS files -->
         <link rel="stylesheet" type="text/css" href="css/venueradio.css">
 
-        <!-- Playlist Templates -->
+        <!-- Templates -->
         <script id="ich_venue_list" type="text/html">
             <ul class="venue-list">
             </ul>
         </script>
 
         <script id="ich_venue_list_item" type="text/html">
-                <li data-slug="{{ venue_slug }}">{{ venue_name }}</li>
+                <li>
+                    <a href="javascript:void(0);" class="venue-link" 
+                        data-slug="{{ venue_slug }}"
+                        data-id="{{ venue_id }}">{{ venue_name }}</a>
+
+                </li>
+        </script>
+
+        <script id="ich_performer_list" type="text/html">
+            <ul class="performer-list">
+            </ul>
+        </script>
+
+        <script id="ich_performer_list_item" type="text/html">
+                <li>
+                    <a href="javascript:void(0);" class="performer-link" 
+                        data-slug="{{ performer_slug }}"
+                        data-id="{{ performer_id }}"
+                        data-uri="{{ performer_uri }}">{{ performer_name }}</a>
+
+                </li>
         </script>
         
     </head>
     <body>
         <div id="container">
-            HelloWorld!
-
+            
         </div> <!-- end #container -->
 
         <script src="/js/lib/jquery.js"></script>
