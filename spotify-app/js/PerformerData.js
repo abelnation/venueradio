@@ -92,7 +92,7 @@ require([
               // console.log(snapshot.get(i));
               var album_uri = snapshot.get(i).albums[0].uri;
               // console.log(album_uri);
-              getAlbumTracks(album_uri);  
+              getAlbumTracks(album_uri, artist_uri);  
             }
 
             
@@ -102,7 +102,7 @@ require([
         });
       }
 
-      function getAlbumTracks(album_uri) {
+      function getAlbumTracks(album_uri, artist_uri) {
         m.Album.fromURI(album_uri).load('name', 'tracks').done(function(album) {
           // console.log(album);
           album.tracks.snapshot().done(function(snapshot) {
@@ -124,7 +124,7 @@ require([
             
               if (num_albums_to_fetch <= 0 || all_tracks.length >= MAX_TRACKS) {
                 num_albums_to_fetch -= 1;
-                done_fn(all_tracks);
+                done_fn(all_tracks, artist_uri);
                 return;
               }
             }

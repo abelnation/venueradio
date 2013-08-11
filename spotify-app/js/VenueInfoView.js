@@ -44,6 +44,15 @@ require([
       header.html(venue_name);
     };
 
+    self.setArtistURI = function(performer_data, artist_uri) {
+      console.log("setArtistUri: " + artist_uri);
+      console.log(performer_data);
+
+      var slug = performer_data['slug'];
+      var elem = ui_content.find("[data-slug='" + slug + "']");
+      elem.attr("href", artist_uri);
+    }
+
     self.noArtistData = function(performer_data) {
       util.log_current_fn("VenueInfoView.noArtistData", Array.prototype.slice.call(arguments));
 
@@ -52,7 +61,7 @@ require([
 
       console.log(slug);
       console.log(elem);
-      
+
       elem.addClass("no-data");
     };
 
