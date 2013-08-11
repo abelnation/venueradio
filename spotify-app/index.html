@@ -2,15 +2,26 @@
 <html>
     <head>
         <!-- Spotify CSS files -->
-        <link rel="stylesheet" type="text/css" href="sp://resources/css/eve.css">
-        <link rel="stylesheet" type="text/css" href="sp://resources/css/api.css">
-        <link rel="stylesheet" type="text/css" href="sp://resources/css/player.css">
-        <link rel="stylesheet" type="text/css" href="sp://resources/css/list.css">
+        <link rel="stylesheet" type="text/css" href="$views/css/list.css">
 
         <!-- Project CSS files -->
         <link rel="stylesheet" type="text/css" href="css/venueradio.css">
 
         <!-- Templates -->
+        <script id="ich_app_screen" type="text/html">
+            <div class="screen hide">
+                <div class="header">
+                    <a class="back-button" href="#" onclick="javascript:void(0);">Back</a>
+                </div>
+                <div class="content">
+                </div>
+            </div>
+        </script>
+        <script id="ich_screen_header" type="text/html">
+
+        </script>
+
+
         <script id="ich_venue_list" type="text/html">
             <ul class="venue-list">
             </ul>
@@ -35,8 +46,9 @@
                     <a href="javascript:void(0);" class="performer-link" 
                         data-slug="{{ performer_slug }}"
                         data-id="{{ performer_id }}"
-                        data-uri="{{ performer_uri }}">{{ performer_name }}</a>
-
+                        data-uri="{{ performer_url }}">{{ performer_name }}</a>
+                    <span class="performer-date">{{ performer_date }}</span>
+                    <a class="performer-tickets" href="{{ performer_tickets }}">Tickets</a>
                 </li>
         </script>
         
@@ -50,6 +62,19 @@
         <script src="/js/lib/ICanHaz.min.js"></script>
         <script src="/js/lib/underscore-min.js"></script>
 
+        <script src="/js/VenueRadio.js"></script>
+
+        <script src="/js/VenueRadioUtil.js"></script>
+        <script src="/js/VenueRadioUserData.js"></script>
+        <script src="/js/PerformerData.js"></script>
+        <script src="/js/ScreenMgr.js"></script>
+        <script src="/js/VenueRadioAuth.js"></script>
+        <script src="/js/VenuesView.js"></script>
+        <script src="/js/VenuesController.js"></script>
+        <script src="/js/VenueInfoView.js"></script>
+        <script src="/js/VenueInfoController.js"></script>
+        <script src="/js/PlaylistView.js"></script>
+        <script src="/js/PlaylistController.js"></script>
         <script src="/js/VenueRadioApp.js"></script>
     </body>
 </html>
