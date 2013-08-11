@@ -53,12 +53,14 @@ require([
                 artists_waiting -= 1;
                 view.setArtistURI(performer_data, artist_uri);
                 VR.PlaylistController.addTracks(tracks, function() {
-                    // if (artists_waiting <= 0 && !started_playing) {
+                    
+                    VR.PlaylistController.shuffle();
                     if (!started_playing) {
                       console.log("Beginning venue playlist")
                       VR.PlaylistController.play();  
                       started_playing = true;  
                     }
+
                   }
                 )
               }

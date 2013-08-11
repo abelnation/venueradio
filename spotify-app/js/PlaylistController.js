@@ -33,12 +33,18 @@ require([
     self.play = function() {
       console.log("play playlist!");
       m.player.playContext(m.Playlist.fromURI(sp_playlist_uri));  
-      setTimeout(function () {
-        m.player.setShuffle(false).done(function() {
-          m.player.setShuffle(true);
-        });
-      }, 500);
+      // setTimeout(function () {
+      //   m.player.setShuffle(false).done(function() {
+      //     m.player.setShuffle(true);
+      //   });
+      // }, 500);
       
+    };
+
+    self.shuffle = function() {
+      m.player.setShuffle(false).done(function() {
+        m.player.setShuffle(true);
+      });
     };
 
     self.stop = function() {
