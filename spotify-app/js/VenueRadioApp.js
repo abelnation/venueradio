@@ -128,6 +128,9 @@ require([
     self.onVenueSelected = function(venue_id) {
       util.log_current_fn("VenueRadioApp.onVenueSelected", Array.prototype.slice.call(arguments));  
 
+      VR.UserData.userViewedVenue(venue_id);
+      VR.VenuesView.reloadVenuesViewed(VR.UserData.getVenuesViewed());
+
       VR.PlaylistController.clear(function() {
         venueinfo_controller.loadVenue(venue_id);
         screen_mgr.show(venueinfo_controller.getView());  

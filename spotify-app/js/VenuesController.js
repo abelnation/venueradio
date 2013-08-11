@@ -6,7 +6,7 @@ require([
     var SERVER_URL = "http://localhost:5000/";
     var SEATGEEK_URL = "http://api.seatgeek.com/2/";
 
-    var MAX_VENUES = 100;
+    var MAX_VENUES = 200;
 
     var util = VR.Util;
     
@@ -19,11 +19,19 @@ require([
     self.init = function(container, city_slug) {
       util.log_current_fn("VenuesController.init", Array.prototype.slice.call(arguments));
 
+      console.log("1");
+
       if (current_city != "") {
         current_city = city_slug;  
       }
       view = VR.VenuesView;
-      view.init(container);
+      var venues_viewed = VR.UserData.getVenuesViewed();
+
+      console.log("2");
+
+      view.init(container, city_slug, venues_viewed);
+
+      console.log("3");
 
     	fetchVenueList(MAX_VENUES);
     };

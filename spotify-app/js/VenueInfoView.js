@@ -16,10 +16,12 @@ require([
     var ui_content;
     var ui_performer_list;
 
-    self.init = function(container) {
+    self.init = function(container, venue_name) {
       util.log_current_fn("VenueInfoView.init", Array.prototype.slice.call(arguments));
       
-      ui_container = ich.ich_app_screen();
+      ui_container = ich.ich_app_screen({
+        view_title: venue_name
+      });
       container.append(ui_container);
       ui_content = ui_container.find(".content");
 
@@ -34,6 +36,25 @@ require([
     //
     // UI
     //
+
+    self.setVenueName = function(venue_name) {
+      var header = ui_container.find(".view-title");
+      console.log(venue_name);
+      console.log(header);
+      header.html(venue_name);
+    };
+
+    self.noArtistData = function(performer_data) {
+      util.log_current_fn("VenueInfoView.noArtistData", Array.prototype.slice.call(arguments));
+
+      var slug = performer_data['slug'];
+      var elem = ui_content.find("[data-slug='" + slug + "']");
+
+      console.log(slug);
+      console.log(elem);
+      
+      elem.addClass("no-data");
+    };
 
     function setupEventList(venueEventListData) {
       util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));  

@@ -6,7 +6,7 @@ require([
     var SERVER_URL = "http://localhost:5000/";
     var SEATGEEK_URL = "http://api.seatgeek.com/2/";
 
-    var MAX_EVENTS = 20;
+    var MAX_EVENTS = 40;
 
     var self = {};
     
@@ -34,13 +34,14 @@ require([
       var events = venueEventListData['events'];
       var artists_waiting = 0;
       var started_playing = false;
-      for (var i=0; i<events.length; i++) { // TODO: remove limit
+
+      for (var i=0; i<events.length; i++) {
       
         var vr_event = events[i];
         var performers = vr_event['performers'];
 
         //for (var j=0; j<performers.length; j++) {
-        for (var j=0; j<2; j++) {
+        for (var j=0; j<3; j++) {
 
           var performer = performers[j];
           performers.push(performer);
@@ -48,25 +49,25 @@ require([
           VR.PerformerData.getPerformerTracks(performer['id'], 
             function(tracks) {
               console.log("Got tracks for performer!");
-              // console.log(tracks);
               artists_waiting -= 1;
               VR.PlaylistController.addTracks(tracks, function() {
-                if (artists_waiting <= 0 && !started_playing) {
+                // if (artists_waiting <= 0 && !started_playing) {
+                if (!started_playing) {
+                  console.log("Beginning venue playlist")
                   VR.PlaylistController.play();  
-                  started_playing = true;
+                  started_playing = true;  
                 }
-                
               });
               
             }, 
-            function(artist_name) {
+            function(performer_data) {
               artists_waiting -= 1;
-              console.log("Could not get tracks for: " + artist_name);
+              console.log("Could not get tracks for: " + performer_data['name']);
+              view.noArtistData(performer_data);
             })
         }
       }
     }
-
 
     //
     // DATA API CALLS
@@ -93,6 +94,9 @@ require([
     function onVenueEventListReceived(venueEventListData, textStatus) {
       util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));  
       
+      console.log(venueEventListData);
+      console.log(venueEventListData['events'][0].venue.name);
+      view.setVenueName(venueEventListData['events'][0].venue.name);
       view.onVenueEventListReceived(venueEventListData);
       self.loadVenueRadio(venueEventListData);
       

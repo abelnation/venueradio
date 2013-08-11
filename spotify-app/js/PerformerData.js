@@ -1,6 +1,7 @@
 require([
     '$api/models',
-], function(m) {
+    '$api/search',
+], function(m, s) {
 
   VR['PerformerData'] = (function() {
     var SEATGEEK_URL = "http://api.seatgeek.com/2/";
@@ -48,9 +49,21 @@ require([
 
         if (spotify_uri != "") { 
           onSpotifyURIReceived(spotify_uri);
-        } else {
-          onNoSpotifyURI(performerData['name']);
-        }
+          return;
+        } 
+
+        // If no URI provided by SG, search manually
+        var so = s.Search.search(performerData['name']); 
+        so.artists.snapshot().done(function(artists) { 
+          if (artists._uris.length > 0) {
+            console.log("found artist by searching");
+            console.log(artists._uris[0]);
+            onSpotifyURIReceived(artists._uris[0]);
+          } else {
+            // give up
+            onNoSpotifyURI(performerData);    
+          }
+        }); 
         
       }
 
@@ -103,7 +116,11 @@ require([
             for(var i=0; i<snapshot.length; i++) {
               
               var track = snapshot.get(i);
-              all_tracks.push(track);  
+              if (track.playable) {
+                all_tracks.push(track);    
+              } else {
+                console.log("track not availabile: " + track.availability);
+              }
             
               if (num_albums_to_fetch <= 0 || all_tracks.length >= MAX_TRACKS) {
                 num_albums_to_fetch -= 1;

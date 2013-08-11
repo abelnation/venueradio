@@ -26,30 +26,19 @@ require([
         console.log("playlist created!");
         console.log(playlist);
         sp_playlist_uri = playlist.uri;
-
-        // m.Playlist.fromURI(playlist.uri).load('name', 'tracks').done(function(the_playlist) {
-        //   console.log("from uri playlist!");
-        //   console.log(the_playlist);
-          
-        //   the_playlist.tracks.add(
-        //     m.Track.fromURI("spotify:track:5weaMKbpUyNejn9C5Q2mLO"),
-        //     m.Track.fromURI("spotify:track:5vh0iJtnzdClF1Poqw0VAj"),
-        //     m.Track.fromURI("spotify:track:601KiLiZtBJRTXBrTjeieP"),
-        //     m.Track.fromURI("spotify:track:29aCzWypaMOYAwfRkk71UQ")
-        //   ).done(function() {
-        //     m.player.playContext(m.Playlist.fromURI(sp_playlist_uri));
-        //   });
-
-        // });
-
       });
 
     };
 
     self.play = function() {
       console.log("play playlist!");
-      m.player.setShuffle(true);
-      m.player.playContext(m.Playlist.fromURI(sp_playlist_uri));
+      m.player.playContext(m.Playlist.fromURI(sp_playlist_uri));  
+      setTimeout(function () {
+        m.player.setShuffle(false).done(function() {
+          m.player.setShuffle(true);
+        });
+      }, 500);
+      
     };
 
     self.stop = function() {
@@ -62,7 +51,6 @@ require([
 
         the_playlist.tracks.clear().done(function(tracks) {
           console.log("playlist cleared");
-          console.log("tracks length: " + tracks.length);
           done_fn();
         });
       });
@@ -72,24 +60,10 @@ require([
       // util.log_current_fn("PlaylistController.addTracks", Array.prototype.slice.call(arguments));  
 
       m.Playlist.fromURI(sp_playlist_uri).load('name', 'tracks').done(function(the_playlist) {
-        // console.log("from uri playlist!");
-        // console.log(the_playlist);
-
         the_playlist.tracks.add(tracks).done(function() {
           // console.log("tracks added");
           done_fn();
         });
-        
-        // var sp_tracks = [];
-        // for(var i=0; i<tracks.length; i++) {
-        //   sp_tracks.push(m.Track.fromURI(tracks[i].uri));
-        // } 
-        // console.log(sp_tracks);
-
-        // the_playlist.tracks.add(sp_tracks).done(function() {
-        //   console.log("tracks added");
-        //   done_fn();
-        // });
       });
     };
 

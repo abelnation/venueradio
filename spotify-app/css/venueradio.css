@@ -2,3 +2,12 @@
 .hide {
   display: none !important;
 }
+
+/*
+ *  Venue Event Listing 
+ */
+/* line 11, ../scss/venueradio.scss */
+.performer-link.no-data {
+  color: gray;
+  text-decoration: none;
+}

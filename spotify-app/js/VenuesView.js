@@ -13,28 +13,66 @@ require([
 
     var util = VR.Util;
 
+    var venues_viewed;
+    var venue_list_data;
+
     var ui_container;
     var ui_content;
+
+    var ui_viewed_venue_list;
     var ui_venue_list;
 
-    self.init = function(container) {
+    self.init = function(container, city_name, venues_seen) {
       util.log_current_fn("VenuesView.init", Array.prototype.slice.call(arguments));
       
-      ui_container = ich.ich_app_screen();
+      venues_viewed = venues_seen;
+
+      ui_container = ich.ich_app_screen({
+        view_title: "" + city_name + " venues"
+      });
       container.append(ui_container);
       ui_content = ui_container.find(".content");
+      ui_container.find(".view-title").html(city_name);
 
       console.log(ui_container);
     };
 
     self.getContainer = function() { return ui_container; }
 
+    self.reloadVenuesViewed = function(venues_seen) {
+      venues_viewed = venues_seen;
+
+      ui_viewed_venue_list.find("li").remove();
+      for (var i=0; i<venue_list_data.venues.length; i++) {
+        var venue_data = venue_list_data['venues'][i];
+        var venue_name = venue_data['name'];
+        var venue_slug = venue_data['slug'];
+        var venue_id =   venue_data['id']
+
+        var data = {
+          venue_name: venue_name,
+          venue_id: venue_id,
+          venue_slug: venue_slug,
+        }
+
+        var venue_elem = ich.ich_venue_list_item(data);
+        if (venue_id in venues_viewed) {
+          ui_viewed_venue_list.append(venue_elem);
+        }
+        venue_elem.click(onVenueClicked);
+      }
+    }
+
     //
     // UI
     //
     
     function setupVenueList(venueListData) {
-      ui_venue_list = ich.ich_venue_list(venueListData);
+      venue_list_data = venueListData;
+
+      ui_viewed_venue_list = ich.ich_venue_list({ list_title: "Viewed Venues" });
+      ui_venue_list = ich.ich_venue_list({ list_title: "All Venues"});
+      ui_content.append(ui_viewed_venue_list);
       ui_content.append(ui_venue_list);
 
       for (var i=0; i<venueListData.venues.length; i++) {
@@ -51,6 +89,9 @@ require([
 
         var venue_elem = ich.ich_venue_list_item(data);
         ui_venue_list.append(venue_elem);
+        if (venue_id in venues_viewed) {
+          ui_viewed_venue_list.append(venue_elem);
+        }
         venue_elem.click(onVenueClicked);
       }
     }
