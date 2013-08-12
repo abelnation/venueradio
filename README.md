@@ -1,8 +1,15 @@
 venueradio
 ==========
 
-To load type the following into the spotify search bar:
+To install the app, run:
+	~$ ./install_app.sh 
+
+To load the app in spotify type the following into the spotify search bar:
 	spotify:app:venueradio
+
+Each time you make changes, run:
+	~$ ./install_app.sh
+to load the spotify app into the correct location
 
 SeatGeek API Docs:
 	http://platform.seatgeek.com/
