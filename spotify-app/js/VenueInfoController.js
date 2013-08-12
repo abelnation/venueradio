@@ -18,9 +18,13 @@ require([
 
     self.init = function(container) {
       util.log_current_fn("VenueInfoController.init", Array.prototype.slice.call(arguments));
-    
-      view = VR.VenueInfoView;
-      view.init(container);
+      
+      // TODO: need to figure out how to manage dependencies correctly
+      setTimeout(function() {
+        view = VR.VenueInfoView;
+        view.init(container);  
+      }, 1000);
+      
     };
     self.getView = function() { return view; }
 

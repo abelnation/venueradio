@@ -1,6 +1,4 @@
-require([
-    '$api/models',
-], function(m) {
+require(['$api/models', '$views/image#Image'], function(m, Image) {
 
   VR['VenueInfoView'] = (function() {
 
@@ -49,16 +47,25 @@ require([
       console.log("setArtistUri: " + artist_uri);
       console.log(performer_data);
 
+      var artist = m.Artist.fromURI(artist_uri);
+      var image = Image.forArtist(artist, {width: 60 ,height: 60});
+      
       var slug = performer_data['slug'];
-      var elem = ui_content.find("[data-slug='" + slug + "']");
-      elem.attr("href", artist_uri);
+      var elem = ui_content.find("li[data-slug='" + slug + "']");
+      elem.data("uri", artist_uri);
+      elem.find(".performer-link").attr("href", artist_uri);
+      //console.log(image);
+      console.log(elem);
+      // console.log(elem.find(".performer-photo"));
+      
+      elem.find(".performer-photo").empty().append(image.node);
     }
 
     self.noArtistData = function(performer_data) {
       util.log_current_fn("VenueInfoView.noArtistData", Array.prototype.slice.call(arguments));
 
       var slug = performer_data['slug'];
-      var elem = ui_content.find("[data-slug='" + slug + "']");
+      var elem = ui_content.find("a[data-slug='" + slug + "']");
 
       console.log(slug);
       console.log(elem);
@@ -103,6 +110,7 @@ require([
           // console.log(performer);
 
           var performer_elem = ich.ich_performer_list_item(performer_data);
+
           ui_performer_list.append(performer_elem);
         }
       }

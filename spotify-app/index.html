@@ -2,6 +2,7 @@
 <html>
     <head>
         <!-- Spotify CSS files -->
+        <link rel="stylesheet" href="$views/css/image.css">
         <link rel="stylesheet" type="text/css" href="$views/css/list.css">
 
         <!-- Project CSS files -->
@@ -45,7 +46,7 @@
         </script>
 
         <script id="ich_performer_list_item" type="text/html">
-                <li class="performer-list-item">
+                <li class="performer-list-item" data-slug="{{ performer_slug }}" data-uri="{{ performer_url }}">
                     <div class="performer-date">
                         <p class="day-of-month">{{ day_of_month }}</p>
                         <p class="day-of-week">{{ day_of_week }}</p>
