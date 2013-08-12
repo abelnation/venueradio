@@ -11,8 +11,9 @@
         <script id="ich_app_screen" type="text/html">
             <div class="screen hide">
                 <div class="header">
+                    <p class="header-prefix">{{ view_subtitle }}</p>
+                    <h1 class="view-title">{{ view_title }}</h1>
                     <a class="back-button" href="#" onclick="javascript:void(0);">Back</a>
-                    <h2 class="view-title">{{ view_title }}</h2>
                 </div>
                 <div class="content">
                 </div>
@@ -30,12 +31,11 @@
         </script>
 
         <script id="ich_venue_list_item" type="text/html">
-                <li>
-                    <a href="javascript:void(0);" class="venue-link" 
+                <a href="javascript:void(0);" class="venue-link" 
                         data-slug="{{ venue_slug }}"
-                        data-id="{{ venue_id }}">{{ venue_name }}</a>
-
-                </li>
+                        data-id="{{ venue_id }}">
+                    <li>{{ venue_name }}</li>
+                </a>
         </script>
 
         <script id="ich_performer_list" type="text/html">
@@ -45,20 +45,34 @@
         </script>
 
         <script id="ich_performer_list_item" type="text/html">
-                <li>
-                    <a href="javascript:void(0);" class="performer-link" 
+                <li class="performer-list-item">
+                    <div class="performer-date">
+                        <p class="day-of-month">{{ day_of_month }}</p>
+                        <p class="day-of-week">{{ day_of_week }}</p>
+                    </div>
+                    <div class="performer-photo"></div>
+                    <div class="performer-info">
+                        <a href="javascript:void(0);" class="performer-link" 
                         data-slug="{{ performer_slug }}"
                         data-id="{{ performer_id }}"
                         data-uri="{{ performer_url }}">{{ performer_name }}</a>
-                    <span class="performer-date">{{ performer_date }}</span>
-                    <a class="performer-tickets" href="{{ performer_tickets }}">Tickets</a>
+                    </div>
+                    <div class="performer-list-item-actions">
+                        <a class="performer-tickets" href="{{ performer_tickets }}">Tickets</a>
+                    </div>
+                    <div class="clearfix"></div>
                 </li>
         </script>
         
     </head>
     <body>
         <div id="container">
-            
+            <div id="left-col">
+
+            </div>
+            <div id="right-col">
+
+            </div>
         </div> <!-- end #container -->
 
         <script src="/js/lib/jquery.js"></script>

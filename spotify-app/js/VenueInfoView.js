@@ -20,6 +20,7 @@ require([
       util.log_current_fn("VenueInfoView.init", Array.prototype.slice.call(arguments));
       
       ui_container = ich.ich_app_screen({
+        view_subtitle: "Events at",
         view_title: venue_name
       });
       container.append(ui_container);
@@ -77,6 +78,13 @@ require([
         var vr_event = events[i];
         console.log(vr_event);
 
+        var event_date = new Date(vr_event['datetime_local']);
+        var day_of_week = VR.Util.dayOfWeekAbbrStringFor(event_date.getDay());
+        var day_of_month = event_date.getDate();
+        var month = event_date.getMonth();
+
+        // console.log("" + day_of_week + " " + day_of_month + " " + event_date.getMonth());
+
         var performers = vr_event['performers'];
         for (var j=0; j<performers.length; j++) {
           var performer = performers[j];
@@ -86,6 +94,8 @@ require([
             performer_url: performer['url'],
             performer_name: performer['name'],
             performer_date: VR.Util.formatDate(vr_event['datetime_local']),
+            day_of_month: day_of_month,
+            day_of_week: day_of_week,
             performer_tickets_url: vr_event['url'],
           };
 

@@ -1,15 +1,202 @@
 
+//
+// VARIABLES
+//
+
+$margin-standard: 10px;
+
+$left-col-width: 300px;
+
+$black:       #000000;
+$darkerGray:  #010101;
+$darkGray:    #303030;
+$gray:        #888888;
+$lightGray:   #a0a0a0;
+$lighterGray: #f0f0f0;
+$white: #ffffff;
+
+$selected-color: yellow;
+$hover-color: blue;
+
+//
+//  GLOBAL STYLES
+//
+
+// Boxsizing trick
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue" Helvetica Arial sans-serif;
+  color: $black;
+  background: $white;
+}
+
+a {
+  text-decoration: none;
+  color: $darkerGray;
+  &:hover{
+    color: $black;
+    text-decoration: underline;
+  }
+}
+
+
+//
+//  UTILITY CLASSES
+//
 .hide {
   display: none !important;
 }
 
-/*
- *  Venue Event Listing 
- */
+.clearfix::after {
+  clear:both;
+  content:".";
+  display:block;
+  font-size:0;
+  height:0;
+  line-height:0;
+  visibility:hidden
+}
 
+
+//
+//  MAIN APP
+//
+
+#container {
+  padding-right: $left-col-width;
+  height: 100%;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+#left-col {
+  width: 100%;
+  height: 100%;
+  float: left;
+
+  overflow-y: scroll;
+}
+#right-col {
+  height: 100%;
+
+  float: right;
+  margin-right: -$left-col-width;
+  width: $left-col-width;
+
+  overflow-y: scroll;
+
+  background: red;
+}
+
+
+//
+//  LISTS
+//
+ul,ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+lh {
+  display: inline-block;
+  width: 100%;
+
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 200;
+
+  border-bottom: 1px solid $lighterGray;
+
+  padding: $margin-standard $margin-standard $margin-standard/2 $margin-standard;
+  margin-top: $margin-standard;
+}
+li {
+  border-bottom: 1px solid $lighterGray;  
+  padding: $margin-standard $margin-standard;
+}
+
+a > li:hover {
+  background: $lighterGray;
+}
+
+// Screen Header
+.header {
+  padding: $margin-standard $margin-standard 0 $margin-standard;
+}
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 100;
+  margin: 0;
+}
+.header-prefix {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+//  
+//  VENUE EVENT LISTING
+//
+$actions-width: 100px;
+.performer-list-item {
+  .performer-date, .performer-photo, .performer-info { float: left; }
+  .performer-list-item-actions { float: right; }
+
+  padding-right: $actions-width + $margin-standard;
+}
+.performer-date {
+  text-align: center;
+  margin: 0 $margin-standard 0 0;
+  width: 38px;
+
+  &>.day-of-month {
+    font-size: 32px;
+    line-height: 34px;
+    font-weight: 100;
+    margin: 0;
+  }
+  &>.day-of-week {
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin: 0;
+  }
+}
+.performer-photo {
+  width: 60px;
+  height: 60px;
+  border: thin solid $black;
+  margin: 0 $margin-standard 0 0;
+}
+.performer-info {
+  font-weight: 200;
+  font-size: 20px;
+}
+.performer-actions {
+  width: 80px;
+  height: 24px;
+
+  text-align: center;
+
+  background: red;
+  margin-right: -$actions-width;
+}
 .performer-link {
   &.no-data { 
-    color: gray; 
+    color: $lightGray; 
     text-decoration: none;
   }
 }

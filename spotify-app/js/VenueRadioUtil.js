@@ -10,6 +10,46 @@ VR['Util'] = (function() {
     var d = new Date(isotimestamp);
     return d.toDateString();
   };
+  self.dayOfWeekStringFor = function(day) {
+    days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    return days[day];
+  }
+  self.dayOfWeekAbbrStringFor = function(day) {
+    days = [
+      "Sun",
+      "Mon",
+      "Tues",
+      "Wed",
+      "Thur",
+      "Fri",
+      "Sat"
+    ];
+    return days[day];
+  }
+  self.monthStringFor = function(month) {
+    months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  }
 
   self.makeRandomComment = function() {
     var names = ['Abel Allison', 'Steve Ritter', 'Karthi Karunanidhi', 'Andreas Brandhaugen', 'Ross Wait'];
@@ -34,6 +74,10 @@ VR['Util'] = (function() {
   	}
   	return result;
   };
+
+  self.toTitleCase =function(str) {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
 
   self.randomInt = function(max) {
   	return Math.floor(Math.random()*max);

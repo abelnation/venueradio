@@ -22,17 +22,22 @@ require([
     var ui_viewed_venue_list;
     var ui_venue_list;
 
-    self.init = function(container, city_name, venues_seen) {
+    self.init = function(container, city_slug, venues_seen) {
       util.log_current_fn("VenuesView.init", Array.prototype.slice.call(arguments));
       
       venues_viewed = venues_seen;
 
+      var city_name = VR.Util.toTitleCase(city_slug.replace("-"," "));
+
       ui_container = ich.ich_app_screen({
-        view_title: "" + city_name + " venues"
+        view_subtitle: "Venues in",
+        view_title: city_name
       });
       container.append(ui_container);
       ui_content = ui_container.find(".content");
-      ui_container.find(".view-title").html(city_name);
+      
+      // ui_container.find(".view-title").html(city_name);
+      ui_container.find(".back-button").hide();
 
       console.log(ui_container);
     };
@@ -111,8 +116,8 @@ require([
     function onVenueClicked(e) {
       util.log_current_fn("VenuesView.onVenueClicked", Array.prototype.slice.call(arguments));  
       
-      var venue_slug = $(e.target).data("slug");
-      var venue_id = $(e.target).data("id");
+      var venue_slug = $(e.target).closest("a").data("slug");
+      var venue_id = $(e.target).closest("a").data("id");
       console.log(venue_slug + " " + venue_id);
 
       VR.VenueRadioApp.onVenueSelected(venue_id);

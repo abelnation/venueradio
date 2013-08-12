@@ -33,8 +33,10 @@ require([
     var playlist_controller;
 
     /* UI Elements */
-  	var ui_container;
-    var ui_performer_list;
+  	// var ui_container;
+    //  var ui_left_col;
+    //  var ui_right_col;
+    // var ui_performer_list;
 
     self.init = function() {
       util.log_current_fn("VenueRadioApp.init", Array.prototype.slice.call(arguments));
@@ -42,13 +44,13 @@ require([
       screen_mgr.init();
 
       venues_controller = VR.VenuesController;
-      venues_controller.init(screen_mgr.getContainer(), "san-francisco");
+      venues_controller.init(screen_mgr.getLeftCol(), "san-francisco");
 
       venueinfo_controller = VR.VenueInfoController;
-      venueinfo_controller.init(screen_mgr.getContainer());
+      venueinfo_controller.init(screen_mgr.getLeftCol());
 
       playlist_controller = VR.PlaylistController;
-      playlist_controller.init(screen_mgr.getContainer());
+      playlist_controller.init(screen_mgr.getLeftCol());
 
       screen_mgr.show(venues_controller.getView());
       // doAuth();

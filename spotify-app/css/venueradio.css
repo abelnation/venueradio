@@ -1,13 +1,188 @@
-/* line 2, ../scss/venueradio.scss */
+/* line 27, ../scss/venueradio.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 31, ../scss/venueradio.scss */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 38, ../scss/venueradio.scss */
+body {
+  font-family: "Helvetica Neue" Helvetica Arial sans-serif;
+  color: black;
+  background: white;
+}
+
+/* line 44, ../scss/venueradio.scss */
+a {
+  text-decoration: none;
+  color: #010101;
+}
+/* line 47, ../scss/venueradio.scss */
+a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+/* line 57, ../scss/venueradio.scss */
 .hide {
   display: none !important;
 }
 
-/*
- *  Venue Event Listing 
- */
-/* line 11, ../scss/venueradio.scss */
+/* line 61, ../scss/venueradio.scss */
+.clearfix::after {
+  clear: both;
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
+/* line 76, ../scss/venueradio.scss */
+#container {
+  padding-right: 300px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* line 83, ../scss/venueradio.scss */
+#left-col {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow-y: scroll;
+}
+
+/* line 90, ../scss/venueradio.scss */
+#right-col {
+  height: 100%;
+  float: right;
+  margin-right: -300px;
+  width: 300px;
+  overflow-y: scroll;
+  background: red;
+}
+
+/* line 106, ../scss/venueradio.scss */
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 111, ../scss/venueradio.scss */
+lh {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 200;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 10px 5px 10px;
+  margin-top: 10px;
+}
+
+/* line 124, ../scss/venueradio.scss */
+li {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 10px;
+}
+
+/* line 129, ../scss/venueradio.scss */
+a > li:hover {
+  background: #f0f0f0;
+}
+
+/* line 134, ../scss/venueradio.scss */
+.header {
+  padding: 10px 10px 0 10px;
+}
+
+/* line 137, ../scss/venueradio.scss */
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 100;
+  margin: 0;
+}
+
+/* line 143, ../scss/venueradio.scss */
+.header-prefix {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* line 153, ../scss/venueradio.scss */
+.performer-list-item {
+  padding-right: 110px;
+}
+/* line 154, ../scss/venueradio.scss */
+.performer-list-item .performer-date, .performer-list-item .performer-photo, .performer-list-item .performer-info {
+  float: left;
+}
+/* line 155, ../scss/venueradio.scss */
+.performer-list-item .performer-list-item-actions {
+  float: right;
+}
+
+/* line 159, ../scss/venueradio.scss */
+.performer-date {
+  text-align: center;
+  margin: 0 10px 0 0;
+  width: 38px;
+}
+/* line 164, ../scss/venueradio.scss */
+.performer-date > .day-of-month {
+  font-size: 32px;
+  line-height: 34px;
+  font-weight: 100;
+  margin: 0;
+}
+/* line 170, ../scss/venueradio.scss */
+.performer-date > .day-of-week {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  font-weight: 200;
+  margin: 0;
+}
+
+/* line 178, ../scss/venueradio.scss */
+.performer-photo {
+  width: 60px;
+  height: 60px;
+  border: thin solid black;
+  margin: 0 10px 0 0;
+}
+
+/* line 184, ../scss/venueradio.scss */
+.performer-info {
+  font-weight: 200;
+  font-size: 20px;
+}
+
+/* line 188, ../scss/venueradio.scss */
+.performer-actions {
+  width: 80px;
+  height: 24px;
+  text-align: center;
+  background: red;
+  margin-right: -100px;
+}
+
+/* line 198, ../scss/venueradio.scss */
 .performer-link.no-data {
-  color: gray;
+  color: #a0a0a0;
   text-decoration: none;
 }

@@ -14,7 +14,6 @@ VR['UserData'] = (function() {
   };
 
   self.getVenuesViewed = function() {
-    console.log("1.1");
     if ('venues_viewed' in localStorage) {
       var vv = JSON.parse(localStorage['venues_viewed']);
       console.log(vv);
