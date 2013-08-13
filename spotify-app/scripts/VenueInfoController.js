@@ -1,6 +1,14 @@
 require([
     '$api/models',
-], function(m) {
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+    '/scripts/VenueInfoView',
+    '/scripts/PerformerData',
+    '/scripts/PlaylistController',
+], function(
+  m,
+  VR
+) {
 
   VR['VenueInfoController'] = (function() {
     var SERVER_URL = "http://localhost:5000/";
@@ -17,7 +25,7 @@ require([
     var view;
 
     self.init = function(container) {
-      util.log_current_fn("VenueInfoController.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenueInfoController.init", "" /*Array.prototype.slice.call(arguments)*/);
       
       // TODO: need to figure out how to manage dependencies correctly
       setTimeout(function() {
@@ -83,7 +91,7 @@ require([
     //
 
     function fetchVenueEvents(venue_id, max_events) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenueInfoController.fetchVenueEvents", "" /*Array.prototype.slice.call(arguments)*/);
 
       var url = SEATGEEK_URL + "events" +
         "?venue.id=" + venue_id + 
@@ -101,7 +109,7 @@ require([
     //
 
     function onVenueEventListReceived(venueEventListData, textStatus) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));  
+      util.log_current_fn("VenueInfoController.onVenueEventListReceived", "" /*Array.prototype.slice.call(arguments)*/);  
       
       console.log(venueEventListData);
       console.log(venueEventListData['events'][0].venue.name);

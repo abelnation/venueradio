@@ -1,4 +1,16 @@
-require(['$api/models', '$views/image#Image'], function(m, Image) {
+require([
+  '$api/models', 
+  '$views/image#Image',
+  '/scripts/lib/ICanHaz.min',
+  '/scripts/VenueRadio',
+  '/scripts/VenueRadioUtil',
+  '/scripts/ScreenMgr',
+  '/scripts/VenuesController',
+], function(
+  m, Image,
+  ich,
+  VR
+) {
 
   VR['VenueInfoView'] = (function() {
 
@@ -15,9 +27,9 @@ require(['$api/models', '$views/image#Image'], function(m, Image) {
     var ui_performer_list;
 
     self.init = function(container, venue_name) {
-      util.log_current_fn("VenueInfoView.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenueInfoView.init", "" /*Array.prototype.slice.call(arguments)*/);
       
-      ui_container = ich.ich_app_screen({
+      ui_container = ich.ich.ich_app_screen({
         view_subtitle: "Events at",
         view_title: venue_name
       });
@@ -62,7 +74,7 @@ require(['$api/models', '$views/image#Image'], function(m, Image) {
     }
 
     self.noArtistData = function(performer_data) {
-      util.log_current_fn("VenueInfoView.noArtistData", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenueInfoView.noArtistData", "" /*Array.prototype.slice.call(arguments)*/);
 
       var slug = performer_data['slug'];
       var elem = ui_content.find("a[data-slug='" + slug + "']");
@@ -74,10 +86,10 @@ require(['$api/models', '$views/image#Image'], function(m, Image) {
     };
 
     function setupEventList(venueEventListData) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));  
+      util.log_current_fn("setupEventList", "" /*Array.prototype.slice.call(arguments)*/);  
 
       ui_content.empty();
-      ui_performer_list = ich.ich_performer_list();
+      ui_performer_list = ich.ich.ich_performer_list();
       ui_content.append(ui_performer_list);
 
       var events = venueEventListData['events'];
@@ -109,7 +121,7 @@ require(['$api/models', '$views/image#Image'], function(m, Image) {
           // fetchPerformerInfo(data.performer_id);
           // console.log(performer);
 
-          var performer_elem = ich.ich_performer_list_item(performer_data);
+          var performer_elem = ich.ich.ich_performer_list_item(performer_data);
 
           ui_performer_list.append(performer_elem);
         }

@@ -1,6 +1,13 @@
 require([
     '$api/models',
-], function(m) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+], function(
+  m, 
+  ich, 
+  VR
+) {
   
   VR['PlaylistView'] = (function() {
 
@@ -16,13 +23,11 @@ require([
     var ui_container;
 
     self.init = function(container) {
-      util.log_current_fn("PlaylistView.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("PlaylistView.init", "" /*Array.prototype.slice.call(arguments)*/);
       
       ui_container = container;
       console.log(container);
     };
-
-
 
     return self;
   })();

@@ -1,6 +1,14 @@
 require([
     '$api/models',
-], function(m) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+    '/scripts/VenuesView',
+    '/scripts/VenueRadioUserData',
+], function(
+  m,
+  ich,
+  VR) {
 
   VR['VenuesController'] = (function() {
     var SERVER_URL = "http://localhost:5000/";
@@ -17,7 +25,7 @@ require([
     var view;
 
     self.init = function(container, city_slug) {
-      util.log_current_fn("VenuesController.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenuesController.init", "" /*Array.prototype.slice.call(arguments)*/);
 
       if (current_city != "") {
         current_city = city_slug;  
@@ -36,7 +44,7 @@ require([
     //
 
     function fetchVenueList(max_venues) {
-      util.log_current_fn("VenuesController.fetchVenueList", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenuesController.fetchVenueList", "" /*Array.prototype.slice.call(arguments)*/);
 
       var url = SEATGEEK_URL + "venues" +
         "?sort=score.desc&per_page=" + max_venues + 
@@ -57,7 +65,7 @@ require([
     // 
 
     function onVenueListReceived(venueListData, textStatus) {
-      util.log_current_fn("VenuesController.onVenueListReceived", Array.prototype.slice.call(arguments));  
+      util.log_current_fn("VenuesController.onVenueListReceived", "" /*Array.prototype.slice.call(arguments)*/);  
       
       console.log(venueListData);
       view.onVenueListReceived(venueListData);

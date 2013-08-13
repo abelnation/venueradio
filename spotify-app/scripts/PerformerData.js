@@ -1,7 +1,13 @@
 require([
     '$api/models',
     '$api/search',
-], function(m, s) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+], function(
+  m, s,
+  ich,
+  VR) {
 
   VR['PerformerData'] = (function() {
     var SEATGEEK_URL = "http://api.seatgeek.com/2/";

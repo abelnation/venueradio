@@ -1,3 +1,12 @@
+require([
+    '$api/models',
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+], function(
+  m,
+  ich,
+  VR) {
 
   VR['Auth'] = (function() {
 
@@ -16,7 +25,7 @@
     };
 
     self.doAuth = function() {
-      util.log_current_fn("Auth.doAuth", Array.prototype.slice.call(arguments));
+      util.log_current_fn("Auth.doAuth", "" /*Array.prototype.slice.call(arguments)*/);
 
       auth.authenticateWithFacebook('554341824586878', ['user_about_me'], {
 
@@ -43,7 +52,7 @@
     //
 
     function fetchUserFacebookInfo(accessToken) {
-      util.log_current_fn("Auth.fetchUserFacebookInfo", Array.prototype.slice.call(arguments));
+      util.log_current_fn("Auth.fetchUserFacebookInfo", "" /*Array.prototype.slice.call(arguments)*/);
 
       var url = "https://graph.facebook.com/me?access_token=" + accessToken;
       $.ajax({
@@ -60,7 +69,7 @@
     //
 
     function onUserInfoReceived(user_info) {
-      util.log_current_fn("Auth.onUserInfoReceived", Array.prototype.slice.call(arguments));
+      util.log_current_fn("Auth.onUserInfoReceived", "" /*Array.prototype.slice.call(arguments)*/);
 
       loginUser(user_info)
 
@@ -69,3 +78,5 @@
 
     return self;
   })();
+  
+});

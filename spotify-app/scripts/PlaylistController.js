@@ -1,6 +1,16 @@
 require([
     '$api/models',
-], function(m) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+    '/scripts/ScreenMgr',
+    '/scripts/PlaylistView',
+    '/scripts/ScreenMgr',
+], function(
+  m,
+  ich,
+  VR
+) {
 
   VR['PlaylistController'] = (function() {
     var SERVER_URL = "http://localhost:5000/";
@@ -17,7 +27,7 @@ require([
     var sp_playlist_uri;
     
     self.init = function(container) {
-      util.log_current_fn("PlaylistController.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("PlaylistController.init", "" /*Array.prototype.slice.call(arguments)*/);
 
       view = VR.PlaylistView;
       view.init(container);
@@ -27,6 +37,8 @@ require([
         console.log(playlist);
         sp_playlist_uri = playlist.uri;
       });
+
+      // m.player.addEventListener('change', updateNowPlayingWidget);
 
     };
 
@@ -63,7 +75,7 @@ require([
     };
 
     self.addTracks = function(tracks, done_fn) {
-      // util.log_current_fn("PlaylistController.addTracks", Array.prototype.slice.call(arguments));  
+      // util.log_current_fn("PlaylistController.addTracks", "" /*Array.prototype.slice.call(arguments)*/);  
 
       m.Playlist.fromURI(sp_playlist_uri).load('name', 'tracks').done(function(the_playlist) {
         the_playlist.tracks.add(tracks).done(function() {

@@ -3,7 +3,21 @@
 //
 require([
     '$api/models',
-], function(m) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/ScreenMgr',
+    '/scripts/VenueRadioAuth',
+    '/scripts/VenueRadioUtil',
+    '/scripts/VenueRadioUserData',
+    '/scripts/VenuesController',
+    '/scripts/VenueInfoController',
+    '/scripts/PlaylistController',
+    '/scripts/VenueRadioUserData',
+    '/scripts/VenuesView'
+], function(
+  m, 
+  ich, 
+  VR) {
     
   VR['VenueRadioApp'] = (function() {
     var SERVER_URL = "http://localhost:5000/";
@@ -39,7 +53,7 @@ require([
     // var ui_performer_list;
 
     self.init = function() {
-      util.log_current_fn("VenueRadioApp.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenueRadioApp.init", "" /*Array.prototype.slice.call(arguments)*/);
 
       screen_mgr.init();
 
@@ -66,7 +80,7 @@ require([
      */
 
     function fetchPerformerInfo(performer_id) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));
+      util.log_current_fn("fetchPerformerInfo", "" /*Array.prototype.slice.call(arguments)*/);
 
       var url = SEATGEEK_URL + "performers/" + performer_id
       $.ajax({
@@ -78,7 +92,7 @@ require([
     }
 
     function playArtist(performer_uri) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));
+      util.log_current_fn(arguments.callee.name, "" /*Array.prototype.slice.call(arguments)*/);
 
       var tracks = new m.Playlist();
 
@@ -101,7 +115,7 @@ require([
 
 
     function loginUser(user_info) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));
+      util.log_current_fn(arguments.callee.name, "" /*Array.prototype.slice.call(arguments)*/);
 
       console.log("STUB: implement login");
       return;
@@ -128,7 +142,7 @@ require([
      * HANDLERS
      */
     self.onVenueSelected = function(venue_id) {
-      util.log_current_fn("VenueRadioApp.onVenueSelected", Array.prototype.slice.call(arguments));  
+      util.log_current_fn("VenueRadioApp.onVenueSelected", "" /*Array.prototype.slice.call(arguments)*/);  
 
       VR.UserData.userViewedVenue(venue_id);
       VR.VenuesView.reloadVenuesViewed(VR.UserData.getVenuesViewed());
@@ -141,7 +155,7 @@ require([
     }
 
     function onPerformerClicked(e) {
-      util.log_current_fn(arguments.callee.name, Array.prototype.slice.call(arguments));  
+      util.log_current_fn(arguments.callee.name, "" /*Array.prototype.slice.call(arguments)*/);  
 
       var performer_uri = $(e.target).data("uri");
       playArtist(performer_uri);

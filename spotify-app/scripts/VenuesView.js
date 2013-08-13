@@ -1,6 +1,12 @@
 require([
     '$api/models',
-], function(m) {
+    '/scripts/lib/ICanHaz.min',
+    '/scripts/VenueRadio',
+    '/scripts/VenueRadioUtil',
+], function(
+  m,
+  ich,
+  VR) {
 
   VR['VenuesView'] = (function() {
 
@@ -23,13 +29,16 @@ require([
     var ui_venue_list;
 
     self.init = function(container, city_slug, venues_seen) {
-      util.log_current_fn("VenuesView.init", Array.prototype.slice.call(arguments));
+      util.log_current_fn("VenuesView.init", "" /*Array.prototype.slice.call(arguments)*/);
       
       venues_viewed = venues_seen;
 
       var city_name = VR.Util.toTitleCase(city_slug.replace("-"," "));
 
-      ui_container = ich.ich_app_screen({
+      console.log("ich");
+      console.log(ich);
+
+      ui_container = ich.ich.ich_app_screen({
         view_subtitle: "Venues in",
         view_title: city_name
       });
@@ -60,7 +69,7 @@ require([
           venue_slug: venue_slug,
         }
 
-        var venue_elem = ich.ich_venue_list_item(data);
+        var venue_elem = ich.ich.ich_venue_list_item(data);
         if (venue_id in venues_viewed) {
           ui_viewed_venue_list.append(venue_elem);
         }
@@ -75,8 +84,8 @@ require([
     function setupVenueList(venueListData) {
       venue_list_data = venueListData;
 
-      ui_viewed_venue_list = ich.ich_venue_list({ list_title: "Viewed Venues" });
-      ui_venue_list = ich.ich_venue_list({ list_title: "All Venues"});
+      ui_viewed_venue_list = ich.ich.ich_venue_list({ list_title: "Viewed Venues" });
+      ui_venue_list = ich.ich.ich_venue_list({ list_title: "All Venues"});
       ui_content.append(ui_viewed_venue_list);
       ui_content.append(ui_venue_list);
 
@@ -92,7 +101,7 @@ require([
           venue_slug: venue_slug,
         }
 
-        var venue_elem = ich.ich_venue_list_item(data);
+        var venue_elem = ich.ich.ich_venue_list_item(data);
         ui_venue_list.append(venue_elem);
         if (venue_id in venues_viewed) {
           ui_viewed_venue_list.append(venue_elem);
@@ -107,14 +116,14 @@ require([
     //
 
     self.onVenueListReceived = function(venueListData) {
-      util.log_current_fn("VenuesView.onVenueListReceived", Array.prototype.slice.call(arguments));  
+      util.log_current_fn("VenuesView.onVenueListReceived", "" /*Array.prototype.slice.call(arguments)*/);  
 
       console.log(venueListData);
       setupVenueList(venueListData);    
     }
 
     function onVenueClicked(e) {
-      util.log_current_fn("VenuesView.onVenueClicked", Array.prototype.slice.call(arguments));  
+      util.log_current_fn("VenuesView.onVenueClicked", "" /*Array.prototype.slice.call(arguments)*/);  
       
       var venue_slug = $(e.target).closest("a").data("slug");
       var venue_id = $(e.target).closest("a").data("id");
